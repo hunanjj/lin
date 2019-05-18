@@ -1,0 +1,28 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /heros
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///heros?serverTimezone=UTC
+    username: root
+    password: 1234
+# \u7981\u7528\u7F13\u5B58 \u4FEE\u6539\u540E\uFF0C\u8981\u5B9E\u65F6\u751F\u6548 ctrl+F9\u91CD\u65B0\u7F16\u8BD1
+  thymeleaf:
+    cache: false
+
+mybatis:
+  type-aliases-package: com.hero.pojo
+  configuration:
+    auto-mapping-behavior: full
+    use-generated-keys: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  mapper-locations: classpath:dao/*.xml
+
+#pagehelper\u5206\u9875\u63D2\u4EF6\u914D\u7F6E(\u4E0D\u662F\u5FC5\u987B)
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  pageSizeZero: true

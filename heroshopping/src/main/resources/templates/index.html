@@ -1,0 +1,405 @@
+<!--商城首页-->
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="all" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="author" content="Tencent" />
+
+    <title>首页-英雄联盟周边商城</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link href="css/usabase.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+
+        /*轮播图样式*/
+        .xyd{
+            display: flex;
+            position: absolute;
+            /*left: 590px;*/
+            bottom: 30px;
+        }
+        .xyd li{
+            width: 15px;
+            height: 15px;
+            margin: 6px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+        }
+        .imgs{
+            /*width: 1280px;*/
+            position: relative;
+        }
+        .imgs li{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            display: none;
+        }
+        .imgs li:nth-of-type(1){
+            display: block;
+        }
+        .hcenter {
+            width: 100%;
+            /*height: 424px;*/
+            font-size: 40px;
+            text-align: center;
+            position: relative;
+            /*margin: 20px auto;*/
+
+        }
+        .helpbar{
+            background: #F6F6F6;
+        }
+
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+    <!--<script src="js/zhuye.js" type="text/javascript" charset="utf-8"></script>-->
+    <script type="text/javascript">
+        $(function(){
+            var widths=$(window).width();
+            var heights=widths/1280*424 ;
+            var liwidth=$(".xyd").width();
+
+            $(".hcenter").css("height",heights+"px") ;
+            $(".imgs").css("width",widths+"px");
+            $(".imgs li img").css("width",widths+"px");
+            $(".xyd").css("left",((widths-liwidth)/2)+"px");
+            /*$(".bottom .bottomshop").css({"min-width":widths+"px","height":heights+"px"});
+            $(".bottomshop").css({"width":(widths-20)+"px","height":heights+"px","margin":0px auto});*/
+        })
+
+        var times;//计时
+        var marginTop=0;
+        $(function(){
+
+            //滚动中间图片
+            changeImg();
+
+        });
+
+        function changeImg(){
+            var index=0;
+            var stop=false;
+            var imgLi=$(".imgs").children("li");
+            var xydLi=$(".xyd").children("li");
+            $(".xyd li").hover(function(){
+                index=$(".xyd li").index(this);
+                //alert(index);
+                stop=true;
+                imgLi.eq(index).fadeIn().stop(true,true).siblings().hide();
+                xydLi.eq(index).css("background-color","red").stop(true,true).siblings().css("background-color","#FFFFFF");
+            },function(){
+                stop=false;
+            });
+            /*imgLi.hover(function(){
+                stop=true;
+            },function(){
+                stop=false;
+            });*/
+
+            setInterval(function(){
+                if(stop) return;
+                index++;
+                if(index>=imgLi.length){//如果是最后一张图片就从头开始
+                    index=0;
+                }
+                imgLi.eq(index).show().stop(true,true).siblings().hide();
+                xydLi.eq(index).css("background-color","red").stop(true,true).siblings().css("background-color","#FFFFFF");
+            },2000);
+        };
+
+    </script>
+</head>
+
+<body>
+
+<div class="lor_topbar lor_wfull">
+    <div class="lor_top ">
+        <div class="lor_logobar fl">
+            <a class="logo" href="//lolriotmall.qq.com/index.shtml?CLICKTAG=lolriotmall.pc.index.logo" title="英雄联盟周边商城">
+                <img class="logoimg" src="images/logo.png" width="300px"/>
+            </a>
+        </div>
+
+        <div class="lor_right">
+            <ul class="lor_right_a">
+                <li>
+                    <a href="#">你好，请登录</a>
+                </li>
+                <li>
+                    <a href="#"><!--<i class="fl ico-menu mcart"></i>-->
+                        <img src="images/gwc.png" width="28px"/><span>购物车</span></a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!--[if !IE]>导航栏<![endif]-->
+    <div class="lor_menubar clearfix">
+        <!--主导航栏-->
+        <ul id="blk_nav" class="menu_zhong fl">
+            <li class="menu_zhongli">
+                <a id="menu_45" href="/index.shtml?CLICKTAG=lolriotmall.pc.index.nav45" class="click">商城首页</a> <i class="menu-ico"></i> </li>
+            <li class="menu_zhongli">
+                <a id="menu_46" href="/list.shtml?catid=101&amp;CLICKTAG=lolriotmall.pc.index.nav46">雕塑手办</a> <i class="menu-ico"></i>
+                <div class="submenu clearfix">
+                    <ul class="fl submenu-list">
+                        <li>
+                            <a href="/list.shtml?catid=121&amp;CLICKTAG=lolriotmall.pc.index.nav46_subNav51" class="submenu-link" parentid="menu_46">大型雕塑</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=122&amp;CLICKTAG=lolriotmall.pc.index.nav46_subNav52" class="submenu-link" parentid="menu_46">中型雕塑</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=208&amp;CLICKTAG=lolriotmall.pc.index.nav46_subNav66" class="submenu-link" parentid="menu_46">限定手办</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=676&amp;CLICKTAG=lolriotmall.pc.index.nav46_subNav221" class="submenu-link" parentid="menu_46">迷你手办</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=209&amp;CLICKTAG=lolriotmall.pc.index.nav46_subNav67" class="submenu-link" parentid="menu_46">手办</a>
+                        </li>
+                    </ul>
+                    <a class="fr subm-img" href="/list.shtml?catid=101&amp;CLICKTAG=lolriotmall.pc.index.nav46_navIcon46"> <img src="https://game.gtimg.cn/images/daojushop/zb/navigation/201903/20190327174803_484059.png" width="81" height="81" alt="雕塑手办"> </a>
+                </div>
+            </li>
+            <li class="menu_zhongli">
+                <a id="menu_47" href="/list.shtml?catid=119&amp;CLICKTAG=lolriotmall.pc.index.nav47">毛绒玩偶</a> <i class="menu-ico"></i>
+                <div class="submenu clearfix">
+                    <ul class="fl submenu-list">
+                        <li>
+                            <a href="/list.shtml?catid=125&amp;CLICKTAG=lolriotmall.pc.index.nav47_subNav54" class="submenu-link" parentid="menu_47">玩偶</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=126&amp;CLICKTAG=lolriotmall.pc.index.nav47_subNav55" class="submenu-link" parentid="menu_47">帽子</a>
+                        </li>
+                    </ul>
+                    <a class="fr subm-img" href="/list.shtml?catid=119&amp;CLICKTAG=lolriotmall.pc.index.nav47_navIcon47"> <img src="https://game.gtimg.cn/images/daojushop/zb/navigation/201903/20190310110340_841041.png" width="81" height="81" alt="毛绒玩偶"> </a>
+                </div>
+            </li>
+            <li class="menu_zhongli">
+                <a id="menu_48" href="/list.shtml?catid=120&amp;CLICKTAG=lolriotmall.pc.index.nav48">男女服饰</a> <i class="menu-ico"></i>
+                <div class="submenu clearfix">
+                    <ul class="fl submenu-list">
+                        <li>
+                            <a href="/list.shtml?catid=127&amp;CLICKTAG=lolriotmall.pc.index.nav48_subNav59" class="submenu-link" parentid="menu_48">卫衣&amp;夹克</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=128&amp;CLICKTAG=lolriotmall.pc.index.nav48_subNav60" class="submenu-link" parentid="menu_48">T恤</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=668&amp;CLICKTAG=lolriotmall.pc.index.nav48_subNav218" class="submenu-link" parentid="menu_48">其他</a>
+                        </li>
+                    </ul>
+                    <a class="fr subm-img" href="/list.shtml?catid=120&amp;CLICKTAG=lolriotmall.pc.index.nav48_navIcon48"> <img src="https://game.gtimg.cn/images/daojushop/zb/navigation/201904/20190425152725_790731.png" width="81" height="81" alt="男女服饰"> </a>
+                </div>
+            </li>
+            <li class="menu_zhongli">
+                <a id="menu_74" href="https://lolriotmall.qq.com/act/a20180411shirt/index.html?CLICKTAG=lolriotmall.pc.index.nav74">LPL周边</a> <i class="menu-ico"></i>
+                <div class="submenu clearfix">
+                    <ul class="fl submenu-list">
+                        <li>
+                            <a href="/list.shtml?catid=218&amp;CLICKTAG=lolriotmall.pc.index.nav74_subNav76" class="submenu-link" parentid="menu_74">队服T恤</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=219&amp;CLICKTAG=lolriotmall.pc.index.nav74_subNav77" class="submenu-link" parentid="menu_74">队服裤子</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=231&amp;CLICKTAG=lolriotmall.pc.index.nav74_subNav85" class="submenu-link" parentid="menu_74">队服外套</a>
+                        </li>
+                    </ul>
+                    <a class="fr subm-img" href="https://lolriotmall.qq.com/act/a20180411shirt/index.htmlCLICKTAG=lolriotmall.pc.index.nav74_navIcon74"> <img src="https://game.gtimg.cn/images/daojushop/zb/navigation/201904/20190425152437_171860.png" width="81" height="81" alt="LPL周边"> </a>
+                </div>
+            </li>
+            <li class="menu_zhongli">
+                <a id="menu_49" href="/list.shtml?catid=665&amp;CLICKTAG=lolriotmall.pc.index.nav49">珠宝首饰</a> <i class="menu-ico"></i>
+                <div class="submenu clearfix">
+                    <ul class="fl submenu-list">
+                        <li>
+                            <a href="/list.shtml?catid=669&amp;CLICKTAG=lolriotmall.pc.index.nav49_subNav219" class="submenu-link" parentid="menu_49">吊坠</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=666&amp;CLICKTAG=lolriotmall.pc.index.nav49_subNav215" class="submenu-link" parentid="menu_49">幸运珠</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=670&amp;CLICKTAG=lolriotmall.pc.index.nav49_subNav220" class="submenu-link" parentid="menu_49">手链</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=667&amp;CLICKTAG=lolriotmall.pc.index.nav49_subNav217" class="submenu-link" parentid="menu_49">配件</a>
+                        </li>
+                    </ul>
+                    <a class="fr subm-img" href="/list.shtml?catid=665&amp;CLICKTAG=lolriotmall.pc.index.nav49_navIcon49">
+                        <img src="https://game.gtimg.cn/images/daojushop/zb/navigation/201811/20181113141104_332843.png" width="81" height="81" alt="珠宝首饰"> </a>
+                </div>
+            </li>
+            <li class="menu_zhongli">
+                <a id="menu_57" href="/list.shtml?catid=116&amp;CLICKTAG=lolriotmall.pc.index.nav57">其他</a> <i class="menu-ico"></i>
+                <div class="submenu clearfix">
+                    <ul class="fl submenu-list">
+                        <li>
+                            <a href="/list.shtml?catid=131&amp;CLICKTAG=lolriotmall.pc.index.nav57_subNav68" class="submenu-link" parentid="menu_57">鼠标垫</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=361&amp;CLICKTAG=lolriotmall.pc.index.nav57_subNav116" class="submenu-link" parentid="menu_57">手机壳</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=117&amp;CLICKTAG=lolriotmall.pc.index.nav57_subNav216" class="submenu-link" parentid="menu_57">海报艺术</a>
+                        </li>
+                        <li>
+                            <a href="/list.shtml?catid=210&amp;CLICKTAG=lolriotmall.pc.index.nav57_subNav69" class="submenu-link" parentid="menu_57">其他</a>
+                        </li>
+                    </ul>
+                    <a class="fr subm-img" href="/list.shtml?catid=116&amp;CLICKTAG=lolriotmall.pc.index.nav57_navIcon57"> <img src="https://game.gtimg.cn/images/daojushop/zb/navigation/201901/20190118154132_940881.png" width="81" height="81" alt="其他"> </a>
+                </div>
+            </li>
+        </ul>
+        <script id="tmpl_nav" type="text/html"> {if list && list.length} {for item in list}
+        <li class="menu_zhongli">
+            <a id="menu_${item.iSeqId}" href="${item.sUrl}{if item.sUrl.indexOf('?') == -1 }?{else}&{/if}CLICKTAG=lolriotmall.pc.index.nav${item.iSeqId}">${item.sName}</a> <i class="menu-ico{if item.iTag == 1} ico-hot{elseif item.iTag == 2} ico-new{/if}"></i> {if item.subs && item.subs.length}
+            <div class="submenu clearfix">
+                <ul class="fl submenu-list"> {for subItem in item.subs}
+                    <li>
+                        <a href="${subItem.sUrl}{if subItem.sUrl.indexOf('?') > -1 }&{/if}CLICKTAG=lolriotmall.pc.index.nav${item.iSeqId}_subNav${subItem.iSeqId}" class="submenu-link" parentid="menu_${item.iSeqId}">${subItem.sName}</a>
+                    </li> {/for} </ul>
+                <a class="fr subm-img" href="${item.sUrl}{if item.sUrl.indexOf('?') > -1 }&{/if}CLICKTAG=lolriotmall.pc.index.nav${item.iSeqId}_navIcon${item.iSeqId}"> <img src="${item.sIcon.replace('http://ossweb-img.qq.com','https://game.gtimg.cn')}" width="81" height="81" alt="${item.sName}"> </a>
+            </div> {/if} </li> {/for} {/if} </script>
+        <!--[if !IE]>搜索栏<![endif]-->
+        <div class="fr lor_sosobar">
+            <div class="soso"> <input name="textfield" type="" class="sosoinp yahei" id="soinp" value="" onfocus="if(this.value==//'//'){this.value=//'//';}" onblur="if(this.value==//'//'){this.value=//'//';}" maxlength="20">
+                <div class="keyword-list">
+                    <a href="//lolriotmall.qq.com/list.shtml?keyword=%E9%98%BF%E7%8B%B8&amp;CLICKTAG=lolriotmall.pc.index.search" title="阿狸" id="lor_solikey">阿狸</a>
+                </div>
+                <a href="javascript:;" class="sosobot lor_searchword">
+                    <!--<i class="ico-menu mseach"></i>--><img src="images/seach.png" width="45px" height="30px"/> </a>
+            </div>
+        </div>
+        <form id="keyWordSearchForm"> <input type="hidden" name="keyWord" id="keyWord" value=""> <input type="hidden" name="keyType" id="keyType" value=""> <input name="start" type="hidden" value="0" id="keyWordStart"> </form>
+    </div>
+</div>
+
+<!--<script src="js/lolriotmall_header_v3.js" charset="UTF-8"></script>-->
+
+<!--[if !IE]>中部主体<![endif]-->
+<div class="usamainbar wfull clearf">
+    <!-- 轮播广告 -->
+    <div class="hcenter">
+        <ul class="imgs">  <!-- width="1280px" height="424px" -->
+            <li><img src="images/20190509213949_469839.jpg"/></li>
+            <li><img src="images/20190502181633_952609.jpg"  /></li>
+            <li><img src="images/20190506120523_406876.jpg"  /></li>
+            <li><img src="images/20190510135544_481547.jpg"  /></li>
+        </ul>
+        <ul class="xyd">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- 推荐位广告 -->
+    <ul id="blk_rec_list" class="inshoplist">          <li>
+        <a target="_blank" href="/detail.shtml?id=8869&amp;CLICKTAG=lolriotmall.pc.index.recommend1">
+            <img src="images/20190509230515_717982.jpg" width="480" height="300" alt="首页推荐广告位">
+        </a>
+        <p class="inshop-tit">925银嵌施华洛世奇水晶项链</p>
+    </li>
+        <li>
+            <a target="_blank" href="/detail.shtml?id=8870&amp;CLICKTAG=lolriotmall.pc.index.recommend2">
+                <img src="images/20190509230553_481997.jpg" width="480" height="300" alt="首页推荐广告位">
+            </a>
+            <p class="inshop-tit">Love 唯爱 18K金镶钻手链</p>
+        </li>
+        <li>
+            <a target="_blank" href="/detail.shtml?id=8818&amp;CLICKTAG=lolriotmall.pc.index.recommend3">
+                <img src="images/20190417210339_356211.jpg" width="480" height="300" alt="首页推荐广告位">
+            </a>
+            <p class="inshop-tit">荣誉版 iG 冠军迷你手办套装荣誉版</p>
+        </li>
+        <li>
+            <a target="_blank" href="/detail.shtml?id=8908&amp;CLICKTAG=lolriotmall.pc.index.recommend4">
+                <img src="images/20190506140122_625719.jpg" width="480" height="300" alt="首页推荐广告位">
+            </a>
+            <p class="inshop-tit">2019季中冠军赛 LPL出征纪念章</p>
+        </li>
+    </ul>
+
+</div>
+<!--[if !IE]>底部<![endif]-->
+<div class="bottom" >
+    <div class="bottomshop">
+        <div id="bottomshop">
+            <div class="fuwubar w980">
+                <ul class="fuwu clearfix">
+                    <li><span class="fw1"></span>
+                        <a class="fu1">7天无理由退换货</a>
+                    </li>
+                    <li><span class="fw2"></span>
+                        <a class="fu2">100%官方正品</a>
+                    </li>
+                    <!--<li><span class="fw3"></span><a class="fu3">购物送游戏礼包</a></li>-->
+                    <li><span class="fw4"></span>
+                        <a class="fu4">全场每单满199元包邮</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="helpbar w980">
+                <ul class="help clearf">
+                    <li class="he_w1">
+                        <h3><a href="/help/helpAfterSale.shtml#help1" target="_blank">购物指南</a></h3>
+                        <a href="/help/helpAfterSale.shtml#help1" target="_blank">帐号注册与登录</a>
+                        <a href="/help/helpAfterSale.shtml#help2" target="_blank">购买流程介绍</a>
+                        <a href="/help/helpAfterSale.shtml#help3" target="_blank">支付方式</a>
+                        <a href="/help/helpAfterSale.shtml#help4" target="_blank">常见问题</a>
+                    </li>
+                    <li class="he_w2">
+                        <h3><a href="/help/helpShopping.shtml#help1" target="_blank">配送服务</a></h3>
+                        <a href="/help/helpShopping.shtml#help1" target="_blank">全场满199元免运费</a>
+                        <a href="/help/helpShopping.shtml#help2" target="_blank">配送范围及运费</a>
+                        <a href="/help/helpShopping.shtml#help3" target="_blank">配送进度查询</a>
+                        <!--<a href="#" target="_blank">微信配速查询</a>-->
+                    </li>
+                    <li class="he_w3">
+                        <h3><a href="/help/helpExpress.shtml#help1" target="_blank">售后服务</a></h3>
+                        <a href="/help/helpExpress.shtml#help1" target="_blank">7天无理由退换货</a>
+                        <a href="/help/helpExpress.shtml#help5" target="_blank">退换货流程</a>
+                        <a href="/help/helpExpress.shtml#help3" target="_blank">商品送错的处理方案</a>
+                        <a href="/help/helpExpress.shtml#help4" target="_blank">售后服务及投诉</a>
+
+                    </li>
+                    <li class="he_w4">
+                        <h3><a href="/help/helpIndex.shtml" target="_blank">服务中心</a></h3>
+                        <div class="fuwu_qq">
+                            <a class="qq_qian" id="qq_qian_comm">售前咨询</a>&nbsp;&nbsp;
+                            <a class="qq_hou" id="qqq_hou_comm">售后咨询</a>
+                        </div>
+                        <span>客服热线：0755-25727866</span>
+                        <!--<span>客服热线：0755-82112581</span>-->
+                        <a href="mailto:service@lolriotmall.qq.com">售后：service@lolriotmall.qq.com</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottomlink w980">
+                <a href="/help/helpabouts.shtml#help5">关于商城</a>
+                <a href="/help/helpabouts.shtml#help4">服务条款</a>
+                <a href="/help/helpabouts.shtml#help3">合作伙伴</a>
+                <a href="/help/helpabouts.shtml#help2">法律声明</a>
+                <!--<a href="/help/helpabouts.shtml#help1">商务合作</a-->
+            </div>
+            <div class="foot clearf">
+                <div class="bqlogo fl"></div>
+                <div class="copyright fl">
+                    深圳市合泰文化发展有限公司提供客服支持 | 客服邮箱：
+                    <a href="mailto:service@lolmall.qq.com">service@lolriotmall.qq.com</a>
+                    <br> Copyright (C) 1998 – 2018 Tencent. All Rights Reserved.腾讯公司 版权所有
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</html>
