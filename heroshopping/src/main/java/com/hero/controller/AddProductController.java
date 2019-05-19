@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * 商品添加控制层
+ * 商品添加控制层123
  */
 @Controller
 public class AddProductController {
