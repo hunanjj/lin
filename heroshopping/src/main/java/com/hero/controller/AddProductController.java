@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * 商品添加控制层
+ */
 @Controller
 public class AddProductController {
 
